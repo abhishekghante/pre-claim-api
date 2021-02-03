@@ -227,6 +227,9 @@ public class MainController {
 				stream.write(bytes);
 				stream.close();
 				//Database Logic
+				int checkCaseId = caseDetailDao.checkCaseId(caseId);
+				if(checkCaseId == 0)
+					caseDetailDao.addCaseDoc(caseId, username);			
 				String fileURL = Config.uploadURL + filename;
 				switch(fileType)
 				{

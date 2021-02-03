@@ -6,6 +6,7 @@ import javax.mail.internet.MimeMessage;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -22,14 +23,17 @@ public class PreClaimService {
 	@Autowired
 	PreClaimRepository repo;
 
+	@Value("${spring.mail.username}")
+    private String fromAddress;
+
 
 	public String Sendmail(admin_user user ,String pass)
 	{
 		user.setPassword(pass);
 		repo.save(user);
 		String toAddress = "noxid9394@gmail.com";
-	    String fromAddress = "claims@xangarsinfra.com";
-	    String senderName = "Your company name";
+	    //String fromAddress = "claims@xangarsinfra.com";
+	    //String senderName = "Your company name";
 	    String subject = "You temp password ";
 	    String content = "Your temp password is<h3> [[name]]</h3>Kindly set your password,<br>"
 	            + "Thank you,<br>"
@@ -40,7 +44,7 @@ public class PreClaimService {
 	     
 	    try 
 	    {
-		    helper.setFrom(fromAddress, senderName);
+		    helper.setFrom(fromAddress);
 		    helper.setTo(toAddress);
 		    helper.setSubject(subject);
 		    content = content.replace("[[name]]", RandomStringUtils.random(6, true, true));

@@ -64,4 +64,13 @@ public interface caseDetailsDao extends JpaRepository<case_details, Integer> {
 	  
 	  @Query("SELECT a FROM case_lists a where investigator = :username")
       public case_lists getCaseListByUsername(@Param("username") String username);
+	  
+	  @Query("SELECT count(a) FROM case_docs a where caseId = :caseId")
+      public int checkCaseId(@Param("caseId") int caseId);
+	  
+	  @Modifying
+	  @Query(value = "INSERT INTO case_docs (caseId, pdf1, pdf2, pdf3, audio, video, signature, createdBy, created_on,"
+	  		+ " updatedBy, updated_on) VALUES (:caseId, '', '', '', '', '', '', :username, now(), '', "
+	  		+ "'0000-00-00 00:00:00')",  nativeQuery = true)
+      public int addCaseDoc(@Param("caseId") int caseId, @Param("username") String username);
 }
