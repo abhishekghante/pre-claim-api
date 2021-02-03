@@ -6,8 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "case_detail")
-public class case_detail {
+@Table(name = "case_details")
+public class case_details {
 
 	@Id
 	@Column
@@ -23,10 +23,10 @@ public class case_detail {
 	@Column
 	private String description;
 	@Column
-	private String createdDate;
+	private String capturedDate;
 
-	public case_detail(int caseId, String policyNumber, String username, String longitude, String latitude,
-			String description, String createdDate) {
+	public case_details(int caseId, String policyNumber, String username, String longitude, String latitude,
+			String description, String capturedDate) {
 		super();
 		this.caseId = caseId;
 		this.policyNumber = policyNumber;
@@ -34,7 +34,7 @@ public class case_detail {
 		this.longitude = longitude;
 		this.latitude = latitude;
 		this.description = description;
-		this.createdDate = createdDate;
+		this.capturedDate = capturedDate;
 	}
 
 	public int getCaseId() {
@@ -86,17 +86,17 @@ public class case_detail {
 	}
 
 	public String getCreatedDate() {
-		return createdDate;
+		return capturedDate;
 	}
 
-	public void setCreatedDate(String createdDate) {
-		this.createdDate = createdDate;
+	public void setCreatedDate(String capturedDate) {
+		this.capturedDate = capturedDate;
 	}
 
 	@Override
 	public String toString() {
 		return "caseDetails [caseId=" + caseId + ", policyNumber=" + policyNumber + ", username=" + username
 				+ ", longitude=" + longitude + ", latitude=" + latitude + ", description=" + description
-				+ ", createdDate=" + createdDate + "]";
+				+ ", createdDate=" + capturedDate + "]";
 	}
 }
