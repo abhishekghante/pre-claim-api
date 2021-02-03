@@ -31,7 +31,7 @@ public class PreClaimService {
 	{
 		user.setPassword(pass);
 		repo.save(user);
-		String toAddress = "noxid9394@gmail.com";
+		String toAddress = user.getUser_email();
 	    //String fromAddress = "claims@xangarsinfra.com";
 	    //String senderName = "Your company name";
 	    String subject = "You temp password ";
